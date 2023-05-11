@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-router'
-import i18n from '@/i18n'
+import i18n from '@/i18n/i18n'
 import routerMiddleware from '@/middlewares/routerMiddleware'
 // import HomeView from '@/views/HomeView'
 
