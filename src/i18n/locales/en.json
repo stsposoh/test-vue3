@@ -1,5 +1,11 @@
 {
+  "locale": {
+    "en": "English",
+    "ru": "Russian"
+  },
   "main": {
-    "hello": "Hello World!"
+    "hello": "Hello World!",
+    "num_visits": "This page hasn't been visited :( | This page has been visited {n} time | This page has been visited {n} times",
+    "donations": "Donations raised: {donations}"
   }
 }

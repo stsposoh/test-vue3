@@ -2,8 +2,9 @@
 
 
 import { RouterLink, RouterView } from 'vue-router'
-import LangsSwitcher from './components/LangsSwitcher.vue'
-import HelloWorld from './components/HelloWorld.vue'
+import LanguagesSwitcher from './components/LanguagesSwitcher.vue'
+import LocalizedLink from './components/LocalizedLink.vue'
+
 
 
 
@@ -14,23 +15,35 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <LangsSwitcher />
-
-
+    <LanguagesSwitcher />
+    <hr>
 
     {{ $t('main.hello') }}
+    <h3>{{ $t('main.num_visits', 5) }}</h3>
+    <p>{{ $t("main.donations", { donations: $n(1456, "currencyFormat") }) }}</p>
+    <p>{{ $d(new Date(), "longFormat") }}</p>
+    <p>{{ $d(new Date(), "shortFormat") }}</p>
 <!--    {{ t('header.loading') }}-->
 <!--    {{ t('showLess') }}-->
 
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+
 
       <nav>
-        <RouterLink :to="'/' + $i18n.locale">Home</RouterLink>
-        <RouterLink :to="'/' + $i18n.locale + '/about'">About</RouterLink>
+        <ul>
+          <li>
+            <LocalizedLink to="home" name="Home" />
+
+          </li>
+          <li>
+            <LocalizedLink to="about" name="About" />
+<!--            <RouterLink :to="Tr.i18nRoute({ name: 'about' })">About</RouterLink>-->
+          </li>
+        </ul>
       </nav>
+
     </div>
   </header>
 
