@@ -1,9 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-router'
-import i18n from '@/i18n/i18n'
-import routerMiddleware from '@/middlewares/routerMiddleware'
+// import i18n from '@/i18n/i18n'
+// import routerMiddleware from '@/middlewares/routerMiddleware'
 // import HomeView from '@/views/HomeView'
 
-console.log(routerMiddleware)
+import i18n, { defaultLocale } from '../i18n'
+
+// console.log(defaultLocale)
+
+// console.log(routerMiddleware)
 
 // const routes: Array<RouteRecordRaw> = [
 //   {
@@ -67,9 +71,13 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
   routes: [
     {
-      path: '/:locale?',
+      path: '/',
+      redirect: `/${defaultLocale}`,
+    },
+    {
+      path: '/:locale',
       // name: 'home',
-      component: RouterView,
+      // component: RouterView,
       // beforeEnter: (to, from, next) => {
       //   const locale = to.params.locale
       //   console.log(locale)
@@ -81,7 +89,7 @@ const router = createRouter({
       //   }
       //   return next()
       // },
-      beforeEnter: routerMiddleware,
+      // beforeEnter: routerMiddleware,
       children: [
         {
           path: '',
@@ -108,6 +116,21 @@ const router = createRouter({
     // }
   ]
 })
+
+router.beforeEach((to, from) => {
+  const newLocale = to.params.locale
+  const prevLocale = from.params.locale
+
+  // If the locale hasn't changed, do nothing
+  if (newLocale === prevLocale) {
+    return
+  }
+
+
+
+  i18n.setLocale(newLocale)
+})
+
 
 // router.beforeEach(routerMiddleware)
 

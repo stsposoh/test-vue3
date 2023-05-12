@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+// import { useRoute } from 'vue-router'
+import router from "@/router";
+
+// console.log(router)
+import { supportedLocales } from '@/i18n'
 const { locale, availableLocales } = useI18n({ useScope: 'global' });
 
 const switchLocale = (lang) => {
   console.log(lang)
   locale.value = lang
   localStorage.setItem('lang', lang)
+  router.push(`/${lang}`)
   // return `/${lang}${route.path}`
 }
 
@@ -29,8 +35,8 @@ const changeLanguage = () => {
 
 <template>
   <div class="language-switcher">
-    {{locale}}
-<!--    {{selectedLanguage}}-->
+    <label for="locale">Locale: {{locale}}</label>
+
 
     <div>
       <div v-for="(lang, index) in availableLocales" :key="index"  @click="switchLocale(lang)">
@@ -61,6 +67,15 @@ const changeLanguage = () => {
 </template>
 
 <style scoped>
+label, select {
+  width: 100%;
+}
+select {
+  height: 25px;
+}
+
+
+
 .language-switcher {
   display: flex;
   gap: 1rem;

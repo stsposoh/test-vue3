@@ -4,6 +4,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import LangsSwitcher from './components/LangsSwitcher.vue'
 import HelloWorld from './components/HelloWorld.vue'
+import LocalizedLink from './components/i18n/LocalizedLink.vue'
 
 
 
@@ -28,8 +29,15 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink :to="'/' + $i18n.locale">Home</RouterLink>
-        <RouterLink :to="'/' + $i18n.locale + '/about'">About</RouterLink>
+        <LocalizedLink to="/">
+          {{ $t('home') }}
+        </LocalizedLink>
+        <!-- When active locale is ar-EG, renders to
+             /ar-EG -->
+        <!-- Notice that we point to about not /about -->
+        <LocalizedLink to="about">
+          {{ $t('about') }}
+        </LocalizedLink>
       </nav>
     </div>
   </header>
