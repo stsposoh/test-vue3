@@ -11,12 +11,10 @@ const i18n = createI18n({
   // for Composition API
   legacy: false,
   // default locale
-  // locale: localStorageLang || import.meta.env.VITE_DEFAULT_LOCALE,
-  locale: 'en',
+  locale: localStorageLang || import.meta.env.VITE_DEFAULT_LOCALE,
   globalInjection: true,
   warnHtmlInMessage: 'off',
-  // fallbackLocale: import.meta.env.VITE_DEFAULT_LOCALE,
-  fallbackLocale: 'en',
+  fallbackLocale: import.meta.env.VITE_DEFAULT_LOCALE,
   messages,
 })
 
